@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="627bbc76-ea19-4da1-a05b-2be070f6fd8c" name="Changes" comment="[ADD] docker-compose.dev.yml and realm-export.json files for digitalmedia project.">
+      <change afterPath="$PROJECT_DIR$/ms-discovery/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realm-export.json" beforeDir="false" afterPath="$PROJECT_DIR$/realm-export.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +86,7 @@
       <workItem from="1670712871566" duration="3522000" />
       <workItem from="1671182362283" duration="4345000" />
       <workItem from="1671271516730" duration="2283000" />
+      <workItem from="1671311860306" duration="696000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] docker-compose.dev.yml and realm-export.json files for digitalmedia project.">
       <created>1670714560568</created>
