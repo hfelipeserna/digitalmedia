@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "717a3b04-4c6d-4e51-994b-c4b70048657e",
+		"name": "digitalmedia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20469425"
+	},
+	"item": [
+		{
+			"name": "OpenID_Connect_Discovery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_HOST_KEYCLOAK}}/realms/{{REALM_NAME}}/.well-known/openid-configuration",
+					"host": [
+						"{{URL_HOST_KEYCLOAK}}"
+					],
+					"path": [
+						"realms",
+						"{{REALM_NAME}}",
+						".well-known",
+						"openid-configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "issuser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_HOST_KEYCLOAK}}/realms/{{REALM_NAME}}",
+					"host": [
+						"{{URL_HOST_KEYCLOAK}}"
+					],
+					"path": [
+						"realms",
+						"{{REALM_NAME}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authorization",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{issuer}}/protocol/openid-connect/auth",
+					"host": [
+						"{{issuer}}"
+					],
+					"path": [
+						"protocol",
+						"openid-connect",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "userinfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{issuer}}/protocol/openid-connect/userinfo",
+					"host": [
+						"{{issuer}}"
+					],
+					"path": [
+						"protocol",
+						"openid-connect",
+						"userinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "end_session",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{issuer}}/protocol/openid-connect/logout",
+					"host": [
+						"{{issuer}}"
+					],
+					"path": [
+						"protocol",
+						"openid-connect",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "introspection",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{issuer}}/protocol/openid-connect/token/introspect",
+					"host": [
+						"{{issuer}}"
+					],
+					"path": [
+						"protocol",
+						"openid-connect",
+						"token",
+						"introspect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "access_token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "code",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "microservicios",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "Pq7WuQMFc8ZoKMi3DxIdsktFUWIHSxnH",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "provider1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "provider1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{issuer}}/protocol/openid-connect/token",
+					"host": [
+						"{{issuer}}"
+					],
+					"path": [
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh_token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{issuer}}/protocol/openid-connect/token?code&client_id=microservicios&client_secret=Pq7WuQMFc8ZoKMi3DxIdsktFUWIHSxnH&username=provider1&grant_type=refresh_token&refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0YTFiZjc2OS03ODVjLTQ4MjUtODlmMi1hOWMwNzMxNDU1MjAifQ.eyJleHAiOjE2NzEyODI2NjYsImlhdCI6MTY3MTI4MjM2NiwianRpIjoiYTc5OTEzMDUtOTQ4ZC00MTdkLThjOGYtM2EzMzdhOGRhYmYyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgyL3JlYWxtcy9EaWdpdGFsTWVkaWEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwODIvcmVhbG1zL0RpZ2l0YWxNZWRpYSIsInN1YiI6IjAwNzJlMDgzLWEzYTMtNGI5My1iYzZiLWE2YmI2NzkyNWQ5ZCIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJtaWNyb3NlcnZpY2lvcyIsInNlc3Npb25fc3RhdGUiOiJjODZlODY3NC1jYmMyLTQxMzMtOTFlMC03NGY3Y2FmY2FjNmMiLCJzY29wZSI6InByb2ZpbGUgaW50ZXJuYWwgZW1haWwiLCJzaWQiOiJjODZlODY3NC1jYmMyLTQxMzMtOTFlMC03NGY3Y2FmY2FjNmMifQ.siJNUBYbstg3LNZkZBEdXH26OPxuTRWSq9ztyDACR4g",
+					"host": [
+						"{{issuer}}"
+					],
+					"path": [
+						"protocol",
+						"openid-connect",
+						"token"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": null
+						},
+						{
+							"key": "client_id",
+							"value": "microservicios"
+						},
+						{
+							"key": "client_secret",
+							"value": "Pq7WuQMFc8ZoKMi3DxIdsktFUWIHSxnH"
+						},
+						{
+							"key": "username",
+							"value": "provider1"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						},
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0YTFiZjc2OS03ODVjLTQ4MjUtODlmMi1hOWMwNzMxNDU1MjAifQ.eyJleHAiOjE2NzEyODI2NjYsImlhdCI6MTY3MTI4MjM2NiwianRpIjoiYTc5OTEzMDUtOTQ4ZC00MTdkLThjOGYtM2EzMzdhOGRhYmYyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgyL3JlYWxtcy9EaWdpdGFsTWVkaWEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwODIvcmVhbG1zL0RpZ2l0YWxNZWRpYSIsInN1YiI6IjAwNzJlMDgzLWEzYTMtNGI5My1iYzZiLWE2YmI2NzkyNWQ5ZCIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJtaWNyb3NlcnZpY2lvcyIsInNlc3Npb25fc3RhdGUiOiJjODZlODY3NC1jYmMyLTQxMzMtOTFlMC03NGY3Y2FmY2FjNmMiLCJzY29wZSI6InByb2ZpbGUgaW50ZXJuYWwgZW1haWwiLCJzaWQiOiJjODZlODY3NC1jYmMyLTQxMzMtOTFlMC03NGY3Y2FmY2FjNmMifQ.siJNUBYbstg3LNZkZBEdXH26OPxuTRWSq9ztyDACR4g"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
