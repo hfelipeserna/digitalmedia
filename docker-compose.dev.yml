@@ -36,7 +36,7 @@ services:
   ms-discovery:
     container_name: ms_discovery
     build:
-      context: .
+      context: ./ms-discovery
       target: development
     ports:
       - '8761:8761'
