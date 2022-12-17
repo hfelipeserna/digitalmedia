@@ -33,7 +33,14 @@ services:
     networks:
       - local-keycloak
 
-  
+  ms-discovery:
+    container_name: ms_discovery
+    build:
+      context: .
+      target: development
+    ports:
+      - '8761:8761'
+    restart: unless-stopped
 
 networks:
   local-keycloak:
