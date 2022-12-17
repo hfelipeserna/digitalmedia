@@ -10,3 +10,18 @@ eureka:
   client:
     fetch-registry: false
     register-with-eureka: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: serviceregistry, health, info
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: ms-discovery
+    description: Eureka server
+    version: 1.0.0
