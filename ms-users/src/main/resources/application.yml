@@ -1,0 +1,42 @@
+#Configuraciones del server
+server:
+  port: ${PORT:0}
+
+#Configuraciones de Eureka
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+#Configuraciones de Spring Cloud
+spring:
+  application:
+    name: ms-users
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8082/realms/DigitalMedia
+          jwk-set-uri: http://localhost:8082/realms/DigitalMedia/protocol/openid-connect/certs
+      client:
+        registration:
+          keycloak-users:
+            provider: keycloak
+            authorization-grant-type: client_credentials
+            client-id: microservicios
+            client-secret: uCAqo4byFoXdJzAz6zOToyMzkDMMhWy9
+        provider:
+          keycloak:
+            token-uri: http://localhost:8082/realms/DigitalMedia/protocol/openid-connect/token
+
+#Configuraciones personalizadas
+dm:
+  keycloak:
+    serverUrl: http://localhost:8082/
+    realm: DigitalMedia
+    clientId: microservicios
+    clientSecret: uCAqo4byFoXdJzAz6zOToyMzkDMMhWy9
+
