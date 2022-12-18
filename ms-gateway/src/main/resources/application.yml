@@ -1,4 +1,4 @@
-#Configuraciones del servidor
+#Configuraciones del server
 server:
   port: 8090
 

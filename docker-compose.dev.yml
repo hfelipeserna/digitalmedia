@@ -41,9 +41,23 @@ services:
     ports:
       - '8761:8761'
     restart: unless-stopped
+    networks:
+      - local-microservices
+
+  ms-gateway:
+    container_name: ms_gateway
+    build:
+      context: ./ms-gateway
+      target: development
+    ports:
+      - '8090:8090'
+    restart: unless-stopped
+    networks:
+      - local-microservices
 
 networks:
   local-keycloak:
+  local-microservices:
 
 volumes:
   db:

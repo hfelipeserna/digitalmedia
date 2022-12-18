@@ -1,16 +1,19 @@
-
+#Configuraciones de Spring Cloud
 spring:
   application:
     name: ms-eureka-server
 
+#Configuraciones del server
 server:
   port: 8761
 
+#Configuraciones de Eureka
 eureka:
   client:
     fetch-registry: false
     register-with-eureka: false
 
+#Configuraciones para actuator
 management:
   endpoints:
     web:
