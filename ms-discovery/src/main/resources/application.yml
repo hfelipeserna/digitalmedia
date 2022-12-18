@@ -1,7 +1,7 @@
 #Configuraciones de Spring Cloud
 spring:
   application:
-    name: ms-eureka-server
+    name: ms-discovery
 
 #Configuraciones del server
 server:
