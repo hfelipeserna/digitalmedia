@@ -12,6 +12,7 @@ eureka:
     fetch-registry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
+    enabled: true
 
 #Configuraciones de Spring Cloud
 spring:
@@ -19,11 +20,20 @@ spring:
     name: ms-gateway
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
         - id: ms-users
           uri: lb://ms-users
           predicates:
             - Path=/api/v1/users/**
+          filters:
+            - StripPrefix=2
+        - id: ms-movies
+          uri: lb://ms-movies
+          predicates:
+            - Path=/api/movies/**
           filters:
             - StripPrefix=2
       default-filters:
