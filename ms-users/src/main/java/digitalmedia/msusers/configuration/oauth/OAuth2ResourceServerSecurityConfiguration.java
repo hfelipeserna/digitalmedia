@@ -2,8 +2,11 @@ package digitalmedia.msusers.configuration.oauth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -17,7 +20,7 @@ public class OAuth2ResourceServerSecurityConfiguration {
         http
                 .oauth2ResourceServer()
                 .jwt()
-                .jwtAuthenticationConverter(new KeycloakJwtAuthenticationConverter());
+                .jwtAuthenticationConverter((Converter<Jwt, ? extends AbstractAuthenticationToken>) new KeycloakJwtAuthenticationConverter());
         http.authorizeHttpRequests().anyRequest().permitAll();
         return http.build();
     }

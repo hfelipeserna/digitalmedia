@@ -28,9 +28,10 @@ public class KeycloakJwtAuthenticationConverter implements Converter<Jwt, Abstra
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         resourcesRoles.addAll(extractRoles("resource_access", objectMapper.readTree(objectMapper.writeValueAsString(jwt)).get("claims")));
-        resourcesRoles.addAll(extractRoles("realm_access", objectMapper.readTree(objectMapper.writeValueAsString(jwt)).get("claims")));
+        resourcesRoles.addAll(extractRealmsRoles("realm_access", objectMapper.readTree(objectMapper.writeValueAsString(jwt)).get("claims")));
         resourcesRoles.addAll(extractAud("aud", objectMapper.readTree(objectMapper.writeValueAsString(jwt)).get("claims")));
-        return resourcesRoles;
+        resourcesRoles.addAll(extractGroups("groups", objectMapper.readTree(objectMapper.writeValueAsString(jwt)).get("claims")));
+    return resourcesRoles;
     }
 
     private static List<GrantedAuthority> extractRoles(String route, JsonNode jwt) {
@@ -41,6 +42,31 @@ public class KeycloakJwtAuthenticationConverter implements Converter<Jwt, Abstra
                 .forEachRemaining(e -> e.path("roles")
                         .elements()
                         .forEachRemaining(r -> rolesWithPrefix.add("ROLE_" + r.asText())));
+
+        final List<GrantedAuthority> authorityList =
+                AuthorityUtils.createAuthorityList(rolesWithPrefix.toArray(new String[0]));
+
+        return authorityList;
+    }
+
+    private static List<GrantedAuthority> extractRealmsRoles(String route, JsonNode jwt) {
+        Set<String> rolesWithPrefix = new HashSet<>();
+
+        jwt.path(route)
+                .get("roles").elements().forEachRemaining(r -> rolesWithPrefix.add("ROLE_" + r.asText()));
+
+        final List<GrantedAuthority> authorityList =
+                AuthorityUtils.createAuthorityList(rolesWithPrefix.toArray(new String[0]));
+
+        return authorityList;
+    }
+
+    private static List<GrantedAuthority> extractGroups(String route, JsonNode jwt) {
+        Set<String> rolesWithPrefix = new HashSet<>();
+
+        jwt.path(route)
+                .elements()
+                .forEachRemaining(g -> rolesWithPrefix.add(g.asText()));
 
         final List<GrantedAuthority> authorityList =
                 AuthorityUtils.createAuthorityList(rolesWithPrefix.toArray(new String[0]));
